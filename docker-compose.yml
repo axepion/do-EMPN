@@ -1,0 +1,12 @@
+version: '3.0'
+
+services:
+  node:
+    build: ./node
+    volumes:
+      - ./frontend:/var/project/frontend
+
+  php:
+    build: ./php
+    volumes:
+      - ./backend:/var/project/backend
