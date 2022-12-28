@@ -2,11 +2,38 @@ version: '3.0'
 
 services:
   node:
-    build: ./node
+    build: ./frontend
     volumes:
       - ./frontend:/var/project/frontend
-
+    
   php:
-    build: ./php
+    build: ./backend
     volumes:
       - ./backend:/var/project/backend
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes: 
+      - ./nginx:/etc/nginx/conf.d
+      - ./backend:/var/project/backend
+      
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWROD: testpass
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testuserpass
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"

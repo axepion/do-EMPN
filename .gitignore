@@ -1,2 +1,4 @@
 mysql
 frontend/node_modules
+backend/composer-setup.php
+backend/composer.phar
