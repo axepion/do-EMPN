@@ -2,12 +2,14 @@ version: '3.0'
 
 services:
   node:
-    build: ./frontend
+    build: ./node
+    ports:
+      - "81:8080"
     volumes:
       - ./frontend:/var/project/frontend
     
   php:
-    build: ./backend
+    build: ./php
     volumes:
       - ./backend:/var/project/backend
 
@@ -25,7 +27,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWROD: testpass
+      MYSQL_ROOT_PASSWORD: testpass
       MYSQL_DATABASE: testdb
       MYSQL_USER: testuser
       MYSQL_PASSWORD: testuserpass

@@ -1,5 +1,5 @@
 #!/bin/sh
-if ! -f composer.json; then
+if test ! -f composer.phar; then
 	
 	EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
 	php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -14,6 +14,6 @@ if ! -f composer.json; then
 
 	php composer-setup.php --quiet
 	RESULT=$?
-	rm composer-setiup.php
+	rm composer-setup.php
 	exit $RESULT
 fi
